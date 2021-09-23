@@ -82,7 +82,6 @@ public class Main extends javax.swing.JFrame {
         jScrollPane13 = new javax.swing.JScrollPane();
         jt_cajero5 = new javax.swing.JTable();
         jl_cont2 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         primerMenu = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -428,8 +427,6 @@ public class Main extends javax.swing.JFrame {
 
         jl_cont2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
 
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -459,9 +456,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(191, 191, 191)
                         .addComponent(jl_contPersonas1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel10)
-                        .addGap(76, 76, 76)
+                        .addGap(127, 127, 127)
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -477,9 +472,7 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jl_cont2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -901,8 +894,10 @@ public class Main extends javax.swing.JFrame {
         @Override
         public void run() {
             try {
-                Thread hiloMetodo2 = new Thread(hilo_metodo2);
-                hiloMetodo2.start();
+                if (metodo2IsSelected == true) {
+                    Thread hiloMetodo2 = new Thread(hilo_metodo2);
+                    hiloMetodo2.start();
+                }
 
                 int minuto = 0;
                 int segundo = 0;
@@ -919,13 +914,16 @@ public class Main extends javax.swing.JFrame {
                     //Metodo 2
                     jl_reloj2.setText("0" + minuto + " : " + segundo);
                     segundo++;
-                    jLabel10.setText(String.valueOf(segundoGlobal));
+
                     Thread.sleep(1000);
                 }
-
-                hiloMetodo2.stop();
-                jd_metodo2.setVisible(false);
+                if (metodo2IsSelected == true) {
+                    //hiloMetodo2.stop();
+                    jd_metodo2.setVisible(false);
                     enseñarTransa(banco.getCajeros().size(), banco.getCajeros());
+                }
+
+                
             } catch (InterruptedException e) {
 
             }
@@ -1066,7 +1064,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.ButtonGroup c_metodo;
     private javax.swing.JComboBox<String> cb_cantcajeros;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
