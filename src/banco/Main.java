@@ -27,36 +27,7 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
-        this.cronometro = new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    
-                    int minuto = 0;
-                    int segundo = 0;
-                    while (minuto != 3) {
-                        
-                        if (segundo == 60) {
-                            segundo = 0;
-                            minuto += 1;
-                        }
-                        
-                        jl_reloj.setText("0" + minuto + " : " + segundo);
-                        jl_reloj1.setText("0" + minuto + " : " + segundo);
-                        
-                        //Metodo 2
-                        jl_reloj2.setText("0" + minuto + " : " + segundo);
-                        segundo += 1;
-                        
-                        Thread.sleep(1000);
-                    }
-                    
-                } catch (InterruptedException e) {
-                    
-                }
-                
-            }
-        };
+
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("Inputs");
@@ -111,6 +82,7 @@ public class Main extends javax.swing.JFrame {
         jScrollPane13 = new javax.swing.JScrollPane();
         jt_cajero5 = new javax.swing.JTable();
         jl_cont2 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         primerMenu = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -119,6 +91,7 @@ public class Main extends javax.swing.JFrame {
         b_metodo2 = new javax.swing.JRadioButton();
         jToggleButton1 = new javax.swing.JToggleButton();
         cb_cantcajeros = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -127,7 +100,7 @@ public class Main extends javax.swing.JFrame {
         personaActual.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         personaActual.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        pg_personas.setMaximum(500);
+        pg_personas.setMaximum(700);
 
         jl_reloj1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jl_reloj1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -455,6 +428,8 @@ public class Main extends javax.swing.JFrame {
 
         jl_cont2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
 
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -484,7 +459,9 @@ public class Main extends javax.swing.JFrame {
                         .addGap(191, 191, 191)
                         .addComponent(jl_contPersonas1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
+                        .addContainerGap()
+                        .addComponent(jLabel10)
+                        .addGap(76, 76, 76)
                         .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -500,7 +477,9 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jl_cont2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -563,50 +542,62 @@ public class Main extends javax.swing.JFrame {
         cb_cantcajeros.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         cb_cantcajeros.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
 
+        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\Daniel\\Dropbox\\5 Periodo\\Estructura de Datos\\Semana 8\\Banco\\Imagenes\\logo-small.png")); // NOI18N
+
         javax.swing.GroupLayout primerMenuLayout = new javax.swing.GroupLayout(primerMenu);
         primerMenu.setLayout(primerMenuLayout);
         primerMenuLayout.setHorizontalGroup(
             primerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(primerMenuLayout.createSequentialGroup()
+                .addGap(185, 185, 185)
                 .addGroup(primerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(primerMenuLayout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(jLabel1))
-                    .addGroup(primerMenuLayout.createSequentialGroup()
-                        .addGap(185, 185, 185)
                         .addGroup(primerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(primerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(cb_cantcajeros, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, primerMenuLayout.createSequentialGroup()
-                                    .addGap(48, 48, 48)
-                                    .addGroup(primerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
-                                        .addGroup(primerMenuLayout.createSequentialGroup()
-                                            .addComponent(b_metodo1)
-                                            .addGap(65, 65, 65)
-                                            .addComponent(b_metodo2)))))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(89, Short.MAX_VALUE))
+                            .addComponent(cb_cantcajeros, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(primerMenuLayout.createSequentialGroup()
+                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, primerMenuLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(68, 68, 68))
+            .addGroup(primerMenuLayout.createSequentialGroup()
+                .addGap(234, 234, 234)
+                .addGroup(primerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addGroup(primerMenuLayout.createSequentialGroup()
+                        .addComponent(b_metodo1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(b_metodo2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         primerMenuLayout.setVerticalGroup(
             primerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(primerMenuLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, primerMenuLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cb_cantcajeros, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addGroup(primerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(b_metodo1)
-                    .addComponent(b_metodo2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50))
+                .addGroup(primerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(primerMenuLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(primerMenuLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cb_cantcajeros, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addGroup(primerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(b_metodo1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(b_metodo2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(75, 75, 75))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -665,9 +656,6 @@ public class Main extends javax.swing.JFrame {
             ventanaPersonas.setLocationRelativeTo(null);
             ventanaPersonas.setVisible(true);
 
-            Thread hilo_cronometro = new Thread(cronometro);
-            hilo_cronometro.start();
-
             Thread hilo = new Thread(runnable);
             hilo.start();
 
@@ -694,7 +682,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jt_cajerosMouseClicked
 
     public void agregarPersonasCola() {
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 70; i++) {
             int edadRand = azar.nextInt(70 - 18) + 18;
             banco.addPersona(new Persona(edadRand, getNombreRandom(), getApellidoRandom()));
         }
@@ -702,7 +690,7 @@ public class Main extends javax.swing.JFrame {
 
     public void agregarPersonas2() {
 
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 70; i++) {
             int edadRand = azar.nextInt(70 - 18) + 18;
 
             //CONSEGUIR LOS TAMAÑOS DE LAS COLAS EN LOS CAJEROS
@@ -866,16 +854,15 @@ public class Main extends javax.swing.JFrame {
         }
 
         //ESTATUS
-        
         try {
             String estatus = "";
-            for (int j = 0; j < banco.getCajeros().size(); j++) {    
-                if(banco.getCajeros().get(j).getPersonas().getP().size()!=0){
+            for (int j = 0; j < banco.getCajeros().size(); j++) {
+                if (banco.getCajeros().get(j).getPersonas().getP().size() != 0) {
                     estatus += "Cajero " + (j + 1) + " " + banco.getCajeros().get(j).getPersonas().FRENTE() + "\n";
-                }else{
+                } else {
                     estatus += "Cajero " + (j + 1) + " " + "VACIO" + "\n";
                 }
-                             
+
             }
             ta_cajerosStatus1.setText("");
             ta_cajerosStatus1.setText(estatus);
@@ -901,7 +888,7 @@ public class Main extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */
@@ -909,35 +896,84 @@ public class Main extends javax.swing.JFrame {
             new Main().setVisible(true);
         });
     }
-    Banco banco = new Banco();
-    int cantCajeros = 0;
-    boolean metodo1IsSelected = false;
-    boolean metodo2IsSelected = false;
-    ArrayList<Cajero> cajeros;
 
-    Runnable cronometro;
+    Runnable cronometro = new Runnable() {
+        @Override
+        public void run() {
+            try {
+                Thread hiloMetodo2 = new Thread(hilo_metodo2);
+                hiloMetodo2.start();
+
+                int minuto = 0;
+                int segundo = 0;
+                while (minuto != 2) {
+                    segundoGlobal++;
+                    if (segundo == 60) {
+                        segundo = 0;
+                        minuto += 1;
+                    }
+
+                    jl_reloj.setText("0" + minuto + " : " + segundo);
+                    jl_reloj1.setText("0" + minuto + " : " + segundo);
+
+                    //Metodo 2
+                    jl_reloj2.setText("0" + minuto + " : " + segundo);
+                    segundo++;
+                    jLabel10.setText(String.valueOf(segundoGlobal));
+                    Thread.sleep(1000);
+                }
+
+                hiloMetodo2.stop();
+                jd_metodo2.setVisible(false);
+                    enseñarTransa(banco.getCajeros().size(), banco.getCajeros());
+            } catch (InterruptedException e) {
+
+            }
+        }
+    };
+
     Runnable hilo_metodo2 = new Runnable() {
         @Override
         public void run() {
             try {
-                int y = 0;
-                for (int i = 0; i < banco.getCajeros().size(); i++) {
-                    
-                    int sizepresonas = banco.getCajeros().get(i).sizePersonas();
-                    for (int j = 0; j < sizepresonas; j++) {
-                        banco.getCajeros().get(i).getPersonas().QUITA(banco.getCajeros().get(i).getPersonas());
+                int personasTotales = 1;
+                while (segundoGlobal < 120 && personasTotales != 0) {
+
+                    int y = 0;
+                    for (int i = 0; i < banco.getCajeros().size(); i++) {
+
+                        int sizepresonas = banco.getCajeros().get(i).sizePersonas();
+                        for (int j = 0; j < sizepresonas; j++) {
+                            banco.getCajeros().get(i).getPersonas().QUITA(banco.getCajeros().get(i).getPersonas());
+                            actualizarDatos2();
+                            banco.getCajeros().get(i).transaccion2();
+                            y++;
+                            jl_cont2.setText(String.valueOf(y));
+                            int tiempo = azar.nextInt(3000 - 1000) + 1000;//Tiempo de 1 - 3 secs
+                            Thread.sleep(tiempo);
+                        }
                         actualizarDatos2();
-                        banco.getCajeros().get(i).transaccion2();
-                        y++;
-                        jl_cont2.setText(String.valueOf(y));
-                        int tiempo = azar.nextInt(3000 - 1000) + 1000;//Tiempo de 1 - 3 secs
-                        Thread.sleep(tiempo);
                     }
-                    actualizarDatos2();
+                    JOptionPane.showMessageDialog(jd_metodo2, "Metodo 2 terminado");
+                    jd_metodo2.setVisible(false);
+                    enseñarTransa(banco.getCajeros().size(), banco.getCajeros());
+
+                    int tempSize = 0;
+                    for (int i = 0; i < banco.getCajeros().size(); i++) {
+                        tempSize += banco.getCajeros().get(i).sizePersonas();
+                    }
+
+                    personasTotales = tempSize;
                 }
-                JOptionPane.showMessageDialog(jd_metodo2, "Metodo 2 terminado");
-                jd_metodo2.setVisible(false);
-                enseñarTransa(banco.getCajeros().size(), banco.getCajeros());
+
+                if (segundoGlobal < 120) {
+                    agregarPersonas2();
+                    actualizarDatos2();
+                } else {
+                    jd_metodo2.setVisible(false);
+                    enseñarTransa(banco.getCajeros().size(), banco.getCajeros());
+
+                }
             } catch (InterruptedException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -950,7 +986,7 @@ public class Main extends javax.swing.JFrame {
 
             if (metodo1IsSelected == true) {
                 int i = 0;
-                while (pg_personas.getValue() != 500) {
+                while (pg_personas.getValue() != 700) {
                     try {
                         Thread.sleep(500);
                         personaActual.setText(banco.getPersonas().getP().get(i).toString());
@@ -980,10 +1016,12 @@ public class Main extends javax.swing.JFrame {
                 }
 
                 banco.Metodo1(ta_cajerosStatus, jt_colaPersonas1, jf_metodo1, tp_transaccion, jl_contPersonas);
+                Thread hilo_cronometro = new Thread(cronometro);
+                hilo_cronometro.start();
             } else {//METODO 2
                 //PROGRESSBAR SIMULACION CREAR PERSONAS
 
-                while (pg_personas.getValue() != 500) {
+                while (pg_personas.getValue() != 700) {
                     try {
 
                         for (Cajero caj : banco.getCajeros()) {
@@ -1004,8 +1042,8 @@ public class Main extends javax.swing.JFrame {
 
                 actualizarDatos2();
 
-                Thread hiloMetodo2 = new Thread(hilo_metodo2);
-                hiloMetodo2.start();
+                Thread hilo_cronometro = new Thread(cronometro);
+                hilo_cronometro.start();
 
                 jd_metodo2.setTitle("METODO 2");
                 jd_metodo2.setModal(true);
@@ -1016,13 +1054,19 @@ public class Main extends javax.swing.JFrame {
             }
         }
     };
-
+    Banco banco = new Banco();
+    int cantCajeros = 0;
+    boolean metodo1IsSelected = false;
+    boolean metodo2IsSelected = false;
+    ArrayList<Cajero> cajeros;
+    int segundoGlobal = 0;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton b_metodo1;
     private javax.swing.JRadioButton b_metodo2;
     private javax.swing.ButtonGroup c_metodo;
     private javax.swing.JComboBox<String> cb_cantcajeros;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1030,6 +1074,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

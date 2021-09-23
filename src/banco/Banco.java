@@ -5,9 +5,13 @@
  */
 package banco;
 
+import static banco.Main.azar;
 import java.awt.TextArea;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,6 +36,7 @@ public class Banco {
     JDialog ventana2;
     JTextPane tp_transaccion;
     JLabel contPersonas;
+    int segundoGlobal = 0;
 
     public Banco() {
     }
@@ -42,7 +47,7 @@ public class Banco {
         this.ventana = pVentana;
         this.tp_transaccion = tp_transaccion;
         this.contPersonas = pContPersonas;
-        Thread hilo = new Thread(hilo_metodo1);
+        Thread hilo = new Thread(tiempo);
         hilo.start();
     }
 
@@ -77,6 +82,53 @@ public class Banco {
         this.cajeros = cajeros;
     }
 
+    public String getNombreRandom() {
+        ArrayList<String> nombres = new ArrayList();
+        nombres.add("Daniel");
+        nombres.add("Pedro");
+        nombres.add("Javier");
+        nombres.add("Carlos");
+        nombres.add("Angel");
+        nombres.add("Claudio");
+        nombres.add("Mario");
+        nombres.add("Alejandro");
+        nombres.add("Juanca");
+        nombres.add("David");
+        nombres.add("Adalberto");
+        nombres.add("Horacio");
+
+        nombres.add("Sofia");
+        nombres.add("Maria");
+        nombres.add("Scarlet");
+        nombres.add("Steffany");
+        nombres.add("Claudy");
+        nombres.add("Camila");
+        nombres.add("Angela");
+        nombres.add("Andrea");
+        nombres.add("Olivia");
+        nombres.add("Emily");
+        nombres.add("Isabella");
+
+        Collections.shuffle(nombres);
+
+        return nombres.get(0);
+    }
+
+    public String getApellidoRandom() {
+        ArrayList<String> apellidos = new ArrayList();
+        apellidos.add("González");
+        apellidos.add("Rojas");
+        apellidos.add("Sanchez");
+        apellidos.add("Muños");
+        apellidos.add("Perez");
+        apellidos.add("Silva");
+        apellidos.add("Contreras");
+
+        Collections.shuffle(apellidos);
+
+        return apellidos.get(0);
+    }
+
     public void actualizarDatos() {
         /* 
             Actualizar tabla que representa la cola de personas
@@ -86,16 +138,12 @@ public class Banco {
             DefaultTableModel model = (DefaultTableModel) jt_personas.getModel();
 
             model.setRowCount(0);
-            if (personas.getP().size() >= 0) {
-                for (int j = 0; j < personas.getP().size(); j++) {
-                    //if (personas.getP().get(j) != null) {//Safe coding
-                    Persona temp = (Persona) personas.getP().get(j);
-                    model.addRow(new Object[]{temp.getNom() + temp.getApellido()});
-                    //}
-                }
-            } else {
-                model.addRow(new Object[]{"VACIO"});
+
+            for (int j = 0; j < personas.getP().size(); j++) {
+                Persona temp = (Persona) personas.getP().get(j);
+                model.addRow(new Object[]{temp.getNom() + temp.getApellido()});
             }
+
         } catch (ArrayIndexOutOfBoundsException e) {
         }
 
@@ -104,7 +152,7 @@ public class Banco {
          */
         try {
             ta_cajeros.setText("");
-            String  results = "";
+            String results = "";
             for (int i = 0; i < cajeros.size(); i++) {
                 results += "Cajero " + (i + 1) + " " + (cajeros.get(i).getP().getNom() + " " + cajeros.get(i).getP().getApellido()) + "\n";
             }
@@ -119,11 +167,11 @@ public class Banco {
         public void run() {
             try {
                 try {
-                    while (personas.VACIA() != true) {
+
+                    while (personas.VACIA() != true && segundoGlobal<120) {
 
                         int cajeroAsignado = azar.nextInt(cajeros.size());
-                        //JOptionPane.showMessageDialog(ta_cajeros, cajeroAsignado);
-                        cajeros.get(cajeroAsignado).setVacio(false);
+
                         cajeros.get(cajeroAsignado).setP((Persona) personas.FRENTE());
                         personas.QUITA(personas);
                         actualizarDatos();
@@ -138,14 +186,46 @@ public class Banco {
                         contPersonas.setText(String.valueOf(personas.getP().size()));//Actualizar contador de personas
                     }
 
-                    ventana.setVisible(false);//Cerrar venta
+                    if (segundoGlobal < 120 && personas.VACIA() == true) {//Si la cola se acabo pone una persona mas
 
-                    Main n = new Main();
-                    n.enseñarTransa(cajeros.size(), cajeros);//Abrir ventana con rersultados
+                        int edadRand = azar.nextInt(70 - 18) + 18;
+                        Persona temp = new Persona(edadRand, getNombreRandom(), getApellidoRandom());
+                        
+                        actualizarDatos();
+                        
+                        personas.PONE(temp);
+                        
+                        Thread hilo = new Thread(hilo_metodo1);
+                        hilo.start();
+                    } else {
+                        ventana.setVisible(false);//Cerrar venta
+
+                        Main n = new Main();
+                        n.enseñarTransa(cajeros.size(), cajeros);//Abrir ventana con rersultados
+                    }
                 } catch (ArrayIndexOutOfBoundsException e) {
                 }
 
             } catch (InterruptedException e) {
+            }
+        }
+    };
+
+    Runnable tiempo = new Runnable() {
+        @Override
+        public void run() {
+            Thread hilo = new Thread(hilo_metodo1);
+            hilo.start();
+            while (segundoGlobal < 120) {
+                if (segundoGlobal == 120) {
+                    hilo.stop();
+                }
+                segundoGlobal++;
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Banco.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     };
